@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -25,7 +25,7 @@ public interface GarcomRepository extends JpaRepository<GarcomModel, Long> {
     LIMIT 1
     """, nativeQuery = true)
     List<Object[]> findGarcomComMaiorFaturamento(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 
 }

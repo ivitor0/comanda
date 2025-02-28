@@ -2,6 +2,7 @@ package br.com.boteco.comanda.rest.controller;
 
 import br.com.boteco.comanda.model.ComandaModel;
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
+import br.com.boteco.comanda.rest.dto.TotalComandasDTO;
 import br.com.boteco.comanda.service.ComandaService;
 import br.com.boteco.comanda.service.GarcomService;
 import jakarta.validation.Valid;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -18,9 +19,6 @@ public class ComandaController {
 
     @Autowired
     private ComandaService comandaService;
-
-    @Autowired
-    private GarcomService garcomService;
 
     @GetMapping
     public ResponseEntity<List<ComandaDTO>> obterTodas() {
@@ -46,17 +44,12 @@ public class ComandaController {
         comandaService.deletarComanda(comandaModel);
     }
 
-//    @GetMapping("/faturamento-total")
-//    public ResponseEntity<Float> calcularFaturamentoTotalNoPeriodo(
-//            @RequestParam("dataInicio") String dataInicioStr,
-//            @RequestParam("dataFim") String dataFimStr) {
-//
-//        LocalDate dataInicio = LocalDate.parse(dataInicioStr);
-//        LocalDate dataFim = LocalDate.parse(dataFimStr);
-//
-//        float faturamentoTotal = comandaService.calcularFaturamentoTotalNoPeriodo(dataInicio, dataFim);
-//
-//        return ResponseEntity.ok(faturamentoTotal);
-//    }
+    @GetMapping("/faturamento-total")
+    public ResponseEntity<List<TotalComandasDTO>> calcularFaturamentoTotalNo(
+            @RequestParam LocalDateTime inicio,
+            @RequestParam LocalDateTime fim) {
+        List<TotalComandasDTO> resultado = comandaService.calcularFaturamentoTotalNoPeriodo(inicio, fim);
+        return ResponseEntity.ok(resultado);
+    }
 
 }

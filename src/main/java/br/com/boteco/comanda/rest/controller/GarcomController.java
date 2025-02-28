@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController //Identifica a classe como controller
@@ -42,10 +43,10 @@ public class GarcomController {
         garcomService.deletar(garcomModel);
     }
 
-    @GetMapping("/garcom/maior-faturamento")
+    @GetMapping("/maior-faturamento")
     public ResponseEntity<List<GarcomFaturamentoDTO>> getGarcomComMaiorFaturamento(
-            @RequestParam LocalDate inicio,
-            @RequestParam LocalDate fim) {
+            @RequestParam LocalDateTime inicio,
+            @RequestParam LocalDateTime fim) {
         List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(inicio, fim);
         return ResponseEntity.ok(resultado);
     }

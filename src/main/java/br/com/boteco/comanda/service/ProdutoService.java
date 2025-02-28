@@ -1,22 +1,17 @@
 package br.com.boteco.comanda.service;
 
 
-import br.com.boteco.comanda.exception.BusinessRuleException;
-import br.com.boteco.comanda.exception.ConstraintException;
-import br.com.boteco.comanda.exception.DataIntegrityException;
-import br.com.boteco.comanda.exception.SQLException;
+import br.com.boteco.comanda.exception.*;
 import br.com.boteco.comanda.model.ProdutoModel;
-import br.com.boteco.comanda.repository.ConsumoRepository;
 import br.com.boteco.comanda.repository.ProdutoRepository;
 import br.com.boteco.comanda.rest.dto.ProdutoDTO;
-import org.modelmapper.ModelMapper;
+import br.com.boteco.comanda.rest.dto.ProdutoMaisVendidoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,12 +19,6 @@ public class ProdutoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
-
-    @Autowired
-    private ConsumoRepository consumoRepository;
-//
-//    @Autowired
-//    private ModelMapper modelMapper;
 
     @Transactional(readOnly = true) //Impede que a solicitação quebre ou não seja finalizada
     public List<ProdutoDTO> obterProdutos() {
@@ -100,21 +89,35 @@ public class ProdutoService {
         }
     }
 
-//    @Transactional(readOnly = true)
-//    public String identificarProdutoMaisVendido(LocalDate dataInicio, LocalDate dataFim) {
-//        List<Map<String, Object>> resultados = consumoRepository.findProdutoMaisVendidoNoPeriodo(dataInicio, dataFim);
-//
-//        if (resultados.isEmpty()) {
-//            return "Nenhum registro encontrado no período especificado.";
-//        }
-//
-//        Map<String, Object> resultado = resultados.getFirst();
-//        String nomeProduto = (String) resultado.get("nomeProduto");
-//        int quantidadeTotal = (int) resultado.get("quantidadeTotal");
-//
-//
-//        return String.format("Produto mais vendido: %s | Quantidade Total Vendida: %d",
-//                nomeProduto, quantidadeTotal);
-//    }
+    @Transactional(readOnly = true)
+    public List<ProdutoMaisVendidoDTO>  identificarProdutoMaisVendido(LocalDateTime dataInicio, LocalDateTime dataFim) {
+
+        try {
+            List<Object[]> resultados = produtoRepository.findProdutoMaisVendido(dataInicio, dataFim);
+
+            if (resultados.isEmpty()) {
+//                return new List<new ProdutoMaisVendidoDTO(null, 0)> //resolver esse retorno
+
+            }
+            return resultados.stream()
+                    .map(obj -> new ProdutoMaisVendidoDTO(
+                            (String) obj[0],
+                            ((Number) obj[1]).intValue()
+                    )
+            ).collect(Collectors.toList());
+
+        }catch (DataIntegrityException e) {
+            throw new DataIntegrityException("Erro! Não foi possível atualizar o garçom: ");
+        }catch (ConstraintException e){
+            throw new ConstraintException("Erro! Não foi possível atualizar o garçom "+ ". Violação de integridade de dados" );
+        }catch (BusinessRuleException e){
+            throw new BusinessRuleException("Erro! Não foi possível atualizar o garçom "+ ". Violação de regra de negócios" );
+        }catch (SQLException e){
+            throw new SQLException("Erro! Não foi possível atualizar o garçom "+ " . Falha na conexão com o banco de dados" );
+        }catch (ObjectNotFoundException e){
+            throw new ObjectNotFoundException("Erro! Não foi possível atualizar o garçom "+ " . Garçom não encontrado");
+        }
+
+    }
 }
 

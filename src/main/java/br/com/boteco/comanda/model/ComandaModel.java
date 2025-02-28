@@ -2,18 +2,14 @@ package br.com.boteco.comanda.model;
 
 
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -30,12 +26,11 @@ public class ComandaModel {
 
     @Column(name = "dataHoraAbertura", nullable = false)
     @NotNull(message = "Não admite valor nulo")
-    private LocalDate dataHoraAbertura;
+    private LocalDateTime dataHoraAbertura;
 
     @Column(name = "dataHoraFechamento", nullable = false)
     @NotNull(message = "Não admite valor nulo")
-    //@NotBlank(message = "Não admite valor em branco")
-    private LocalDate dataHoraFechamento;
+    private LocalDateTime dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)
     private float valorTotalComanda;

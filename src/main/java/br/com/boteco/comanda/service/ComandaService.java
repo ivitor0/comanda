@@ -2,19 +2,14 @@ package br.com.boteco.comanda.service;
 
 import br.com.boteco.comanda.exception.*;
 import br.com.boteco.comanda.model.ComandaModel;
-import br.com.boteco.comanda.model.FormaPagamentoModel;
-import br.com.boteco.comanda.model.GarcomModel;
-import br.com.boteco.comanda.model.MesaModel;
 import br.com.boteco.comanda.repository.ComandaRepository;
-import br.com.boteco.comanda.repository.FormaPagamentoRepository;
-import br.com.boteco.comanda.repository.GarcomRepository;
-import br.com.boteco.comanda.repository.MesaRepository;
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
+import br.com.boteco.comanda.rest.dto.TotalComandasDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,15 +19,6 @@ public class ComandaService {
     @Autowired
     private ComandaRepository comandaRepository;
 
-
-    @Autowired
-    private GarcomRepository garcomRepository;
-
-    @Autowired
-    private FormaPagamentoRepository formaPagamentoRepository;
-
-    @Autowired
-    private MesaRepository mesaRepository;
 
     @Transactional(readOnly = true)
     public List<ComandaDTO> obterTodas() {
@@ -126,17 +112,29 @@ public class ComandaService {
         }
     }
 
-    public List<GarcomModel> listar(){
-        List<GarcomModel> garcons = garcomRepository.findAll();
-        return garcons;
-    }
 
-//    public float calcularFaturamentoTotalNoPeriodo(LocalDate dataInicio, LocalDate dataFim) {
-//            if (dataInicio.isAfter(dataFim)) {
-//            throw new IllegalArgumentException("A data de início deve ser anterior ou igual à data de fim.");
-//        }
-//        float faturamentoTotal = comandaRepository.calcularFaturamentoTotalNoPeriodo(dataInicio, dataFim, "Fechado");
-//
-//        return faturamentoTotal != 0.0 ? faturamentoTotal : 0;
-//    }
+    public List<TotalComandasDTO> calcularFaturamentoTotalNoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim) {
+        try {
+
+            List<Object[]> resultados = comandaRepository.findTotalComandas(dataInicio, dataFim);
+
+            return resultados.stream().map(obj ->
+                    new TotalComandasDTO(
+                            ((Number) obj[0]).floatValue()
+                    )
+            ).collect(Collectors.toList());
+
+        }catch (DataIntegrityException e) {
+            throw new DataIntegrityException("Erro! Não foi possível atualizar o garçom: ");
+        }catch (ConstraintException e){
+            throw new ConstraintException("Erro! Não foi possível atualizar o garçom "+ ". Violação de integridade de dados" );
+        }catch (BusinessRuleException e){
+            throw new BusinessRuleException("Erro! Não foi possível atualizar o garçom "+ ". Violação de regra de negócios" );
+        }catch (SQLException e){
+            throw new SQLException("Erro! Não foi possível atualizar o garçom "+ " . Falha na conexão com o banco de dados" );
+        }catch (ObjectNotFoundException e){
+            throw new ObjectNotFoundException("Erro! Não foi possível atualizar o garçom "+ " . Garçom não encontrado");
+        }
+
+    }
 }

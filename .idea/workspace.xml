@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c29ab1ef-6add-452d-865f-47c2046eb322" name="Changes" comment="Pilot" />
+    <list default="true" id="c29ab1ef-6add-452d-865f-47c2046eb322" name="Changes" comment="Pilot">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/dto/ProdutoMaisVendidoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/dto/TotalComandasDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ComandaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ComandaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ConsumoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ConsumoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/MesaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/MesaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ComandaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ComandaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/GarcomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/GarcomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ComandaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ComandaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/GarcomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/GarcomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ComandaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ComandaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/GarcomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/GarcomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ProdutoService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +37,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ivitor0&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ivitor0/comanda.git&quot;,
+    &quot;accountId&quot;: &quot;1809fb04-cb87-44c3-b907-79e1f500348b&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -32,7 +60,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -42,20 +70,26 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ComandaApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/grazi/OneDrive/Área de Trabalho/Igor/Projetos/comanda",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ComandaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/grazi/OneDrive/Área de Trabalho/Igor/Projetos/comanda&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.boteco.comanda.rest.dto" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="ComandaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.com.boteco.comanda.ComandaApplication" />
@@ -101,7 +135,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740679822923</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Pilot">
+      <option name="closed" value="true" />
+      <created>1740681479705</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740681479705</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Pilot">
+      <option name="closed" value="true" />
+      <created>1740681770494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740681770494</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,6 +162,11 @@
     </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="a62324a4-78c3-4ae1-836e-dccadfa94d05">
           <value>
             <State>
