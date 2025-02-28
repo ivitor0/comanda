@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,7 +91,7 @@ public class ProdutoService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProdutoMaisVendidoDTO>  identificarProdutoMaisVendido(LocalDateTime dataInicio, LocalDateTime dataFim) {
+    public List<ProdutoMaisVendidoDTO>  identificarProdutoMaisVendido(LocalDate dataInicio, LocalDate dataFim) {
 
         try {
             List<Object[]> resultados = produtoRepository.findProdutoMaisVendido(dataInicio, dataFim);

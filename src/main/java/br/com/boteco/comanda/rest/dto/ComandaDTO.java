@@ -1,11 +1,8 @@
 package br.com.boteco.comanda.rest.dto;
 
 import br.com.boteco.comanda.model.ComandaModel;
-import br.com.boteco.comanda.model.GarcomModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
@@ -15,7 +12,7 @@ public class ComandaDTO {
     @Column(name = "dataHoraAbertura", nullable = false)
     private LocalDate dataHoraAbertura;
 
-    @Column(name = "dataHoraFechamento", nullable = false)
+    @Column(name = "dataHoraFechamento")
     private LocalDate dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)

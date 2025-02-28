@@ -3,6 +3,7 @@ package br.com.boteco.comanda.rest.controller;
 
 import br.com.boteco.comanda.model.FormaPagamentoModel;
 import br.com.boteco.comanda.rest.dto.FormaPagamentoDTO;
+import br.com.boteco.comanda.rest.dto.FormaPagamentoMaisUsadaDTO;
 import br.com.boteco.comanda.service.FormaPagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -42,18 +44,12 @@ public class FormaPagamentoController {
         formaPagamentoService.deletarFormaPagamento(produtoExistente);
     }
 
-//    @GetMapping("/mais-utilizada")
-//    public ResponseEntity<String> getFormaPagamentoMaisUtilizada(
-//            @RequestParam LocalDate dataInicio,
-//            @RequestParam LocalDate dataFim) {
-//
-//        if (dataInicio.isAfter(dataFim)) {
-//            return ResponseEntity.badRequest().body("A data de início deve ser anterior à data de fim.");
-//        }
-//
-//        String resultado = formaPagamentoService.getFormaPagamentoMaisUtilizada(dataInicio, dataFim);
-//
-//        return ResponseEntity.ok(resultado);
-//    }
+    @GetMapping("/mais-usada")
+    public ResponseEntity<List<FormaPagamentoMaisUsadaDTO>> calcularFormaMaisUsada(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim) {
+        List<FormaPagamentoMaisUsadaDTO> resultado = formaPagamentoService.getFormaMaisUsada(inicio, fim);
+        return ResponseEntity.ok(resultado);
+    }
 
 }

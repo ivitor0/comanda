@@ -4,11 +4,14 @@ import br.com.boteco.comanda.exception.*;
 import br.com.boteco.comanda.model.ComandaModel;
 import br.com.boteco.comanda.repository.ComandaRepository;
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
+import br.com.boteco.comanda.rest.dto.ComandaMaiorConsumoDTO;
+import br.com.boteco.comanda.rest.dto.ComandaTempoMedioDTO;
 import br.com.boteco.comanda.rest.dto.TotalComandasDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,40 +44,6 @@ public class ComandaService {
             throw new SQLException("Erro! Falha na conexão com o banco de dados ao salvar a comanda.");
         }
     }
-
-//    public ComandaDTO salvarComanda2(ComandaModel novaComanda) {
-//        //ComandaModel novaComanda = new ComandaModel();
-//
-//        // Buscar entidades pelo ID
-//        GarcomModel garcom = garcomRepository.findById(novaComanda.getGarcom().getIdGarcom())
-//                .orElseThrow(() -> new ObjectNotFoundException("Garçom não encontrado"));
-//        FormaPagamentoModel formaPagamento = formaPagamentoRepository.findById(novaComanda.getFormaPagamento().getIdFormaPagamento())
-//                .orElseThrow(() -> new ObjectNotFoundException("Forma de pagamento não encontrada"));
-//        MesaModel mesa = mesaRepository.findById(novaComanda.getMesa().getIdMesa())
-//                .orElseThrow(() -> new ObjectNotFoundException("Mesa não encontrada"));
-//
-//        // Setar os valores na entidade
-//        novaComanda.setDataHoraAbertura(LocalDate.now());
-//        novaComanda.setDataHoraFechamento(novaComanda.getDataHoraFechamento());
-//        novaComanda.setValorTotalComanda(novaComanda.getValorTotalComanda());
-//        novaComanda.setValorGorjeta(novaComanda.getValorGorjeta());
-//        novaComanda.setStatus(novaComanda.getStatus());
-//        novaComanda.setGarcom(garcom);
-//        novaComanda.setFormaPagamento(formaPagamento);
-//        novaComanda.setMesa(mesa);
-//
-//        try {
-//            return comandaRepository.save(novaComanda).toDTO();
-//        } catch (DataIntegrityException e) {
-//            throw new DataIntegrityException("Erro! Não foi possível salvar a comanda.");
-//        } catch (BusinessRuleException e) {
-//            throw new BusinessRuleException("Erro! Violação de regra de negócios ao salvar a comanda.");
-//        } catch (SQLException e) {
-//            throw new SQLException("Erro! Falha na conexão com o banco de dados ao salvar a comanda.");
-//        }
-//    }
-
-
 
     @Transactional
     public ComandaDTO atualizarComanda(ComandaModel comandaExistente) {
@@ -113,7 +82,7 @@ public class ComandaService {
     }
 
 
-    public List<TotalComandasDTO> calcularFaturamentoTotalNoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim) {
+    public List<TotalComandasDTO> getFaturamentoTotalNoPeriodo(LocalDate dataInicio, LocalDate dataFim) {
         try {
 
             List<Object[]> resultados = comandaRepository.findTotalComandas(dataInicio, dataFim);
@@ -125,16 +94,71 @@ public class ComandaService {
             ).collect(Collectors.toList());
 
         }catch (DataIntegrityException e) {
-            throw new DataIntegrityException("Erro! Não foi possível atualizar o garçom: ");
+            throw new DataIntegrityException("Erro! Não foi possível obter o resultado");
         }catch (ConstraintException e){
-            throw new ConstraintException("Erro! Não foi possível atualizar o garçom "+ ". Violação de integridade de dados" );
+            throw new ConstraintException("Erro! Não foi possível obter o resultado "+ ". Violação de integridade de dados" );
         }catch (BusinessRuleException e){
-            throw new BusinessRuleException("Erro! Não foi possível atualizar o garçom "+ ". Violação de regra de negócios" );
+            throw new BusinessRuleException("Erro! Não foi possível obter o resultado "+ ". Violação de regra de negócios" );
         }catch (SQLException e){
-            throw new SQLException("Erro! Não foi possível atualizar o garçom "+ " . Falha na conexão com o banco de dados" );
+            throw new SQLException("Erro! Não foi possível obter o resultado "+ " . Falha na conexão com o banco de dados" );
         }catch (ObjectNotFoundException e){
-            throw new ObjectNotFoundException("Erro! Não foi possível atualizar o garçom "+ " . Garçom não encontrado");
+            throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
-
     }
+    public List<ComandaMaiorConsumoDTO> getMaiorConsumo(LocalDate dataInicio, LocalDate dataFim, String status) {
+        try {
+
+            List<Object[]> resultados = comandaRepository.findComandaMaiorConsumo(dataInicio, dataFim, status);
+
+            return resultados.stream().map(obj ->
+                    new ComandaMaiorConsumoDTO(
+                            ((Number) obj[0]).longValue(),
+                            ((Number) obj[1]).intValue()
+                    )
+            ).collect(Collectors.toList());
+
+        }catch (DataIntegrityException e) {
+            throw new DataIntegrityException("Erro! Não foi possível obter o resultado");
+        }catch (ConstraintException e){
+            throw new ConstraintException("Erro! Não foi possível obter o resultado "+ ". Violação de integridade de dados" );
+        }catch (BusinessRuleException e){
+            throw new BusinessRuleException("Erro! Não foi possível obter o resultado "+ ". Violação de regra de negócios" );
+        }catch (SQLException e){
+            throw new SQLException("Erro! Não foi possível obter o resultado "+ " . Falha na conexão com o banco de dados" );
+        }catch (ObjectNotFoundException e){
+            throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
+        }
+    }
+    public List<ComandaTempoMedioDTO> getTempoMedio(LocalDate dataInicio, LocalDate dataFim) {
+        try {
+
+            List<Object[]> resultados = comandaRepository.findTempoMedioPermanencia(dataInicio, dataFim);
+
+            return resultados.stream().map(obj ->
+                    new ComandaTempoMedioDTO(
+                            ((Number) obj[0]).longValue(),
+                            ((Number) obj[1]).floatValue()
+                    )
+            ).collect(Collectors.toList());
+
+        }catch (DataIntegrityException e) {
+            throw new DataIntegrityException("Erro! Não foi possível obter o resultado");
+        }catch (ConstraintException e){
+            throw new ConstraintException("Erro! Não foi possível obter o resultado "+ ". Violação de integridade de dados" );
+        }catch (BusinessRuleException e){
+            throw new BusinessRuleException("Erro! Não foi possível obter o resultado "+ ". Violação de regra de negócios" );
+        }catch (SQLException e){
+            throw new SQLException("Erro! Não foi possível obter o resultado "+ " . Falha na conexão com o banco de dados" );
+        }catch (ObjectNotFoundException e){
+            throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
+        }
+    }
+
+
+
+
+
+
+
+
 }

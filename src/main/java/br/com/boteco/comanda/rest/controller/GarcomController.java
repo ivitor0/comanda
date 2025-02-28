@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class GarcomController {
     }
 
     @GetMapping("/maior-faturamento")
-    public ResponseEntity<List<GarcomFaturamentoDTO>> getGarcomComMaiorFaturamento(
-            @RequestParam LocalDateTime inicio,
-            @RequestParam LocalDateTime fim) {
+    public ResponseEntity<List<GarcomFaturamentoDTO>> calcularGarcomComMaiorFaturamento(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim) {
         List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(inicio, fim);
         return ResponseEntity.ok(resultado);
     }

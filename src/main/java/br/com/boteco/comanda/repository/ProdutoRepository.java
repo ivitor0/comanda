@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long> {
             ORDER BY quantidadeTotal DESC
             """, nativeQuery = true)
     List<Object[]> findProdutoMaisVendido(
-            @Param("inicio") LocalDateTime inicio,
-            @Param("fim") LocalDateTime fim);
+            @Param("inicio") LocalDate inicio,
+            @Param("fim") LocalDate fim);
 
 }

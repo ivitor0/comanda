@@ -2,14 +2,16 @@ package br.com.boteco.comanda.rest.controller;
 
 import br.com.boteco.comanda.model.ComandaModel;
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
+import br.com.boteco.comanda.rest.dto.ComandaMaiorConsumoDTO;
+import br.com.boteco.comanda.rest.dto.ComandaTempoMedioDTO;
 import br.com.boteco.comanda.rest.dto.TotalComandasDTO;
 import br.com.boteco.comanda.service.ComandaService;
-import br.com.boteco.comanda.service.GarcomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,9 +48,26 @@ public class ComandaController {
 
     @GetMapping("/faturamento-total")
     public ResponseEntity<List<TotalComandasDTO>> calcularFaturamentoTotalNo(
-            @RequestParam LocalDateTime inicio,
-            @RequestParam LocalDateTime fim) {
-        List<TotalComandasDTO> resultado = comandaService.calcularFaturamentoTotalNoPeriodo(inicio, fim);
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim) {
+        List<TotalComandasDTO> resultado = comandaService.getFaturamentoTotalNoPeriodo(inicio, fim);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/maior-consumo")
+    public ResponseEntity<List<ComandaMaiorConsumoDTO>> calcularMaiorConsumo(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim,
+            @RequestParam String status) {
+        List<ComandaMaiorConsumoDTO> resultado = comandaService.getMaiorConsumo(inicio, fim, status);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/tempo-medio")
+    public ResponseEntity<List<ComandaTempoMedioDTO>> calcularTempoMedio(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim) {
+        List<ComandaTempoMedioDTO> resultado = comandaService.getTempoMedio(inicio, fim);
         return ResponseEntity.ok(resultado);
     }
 

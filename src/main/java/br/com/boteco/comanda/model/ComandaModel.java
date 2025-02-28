@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -26,11 +27,10 @@ public class ComandaModel {
 
     @Column(name = "dataHoraAbertura", nullable = false)
     @NotNull(message = "Não admite valor nulo")
-    private LocalDateTime dataHoraAbertura;
+    private LocalDate dataHoraAbertura;
 
     @Column(name = "dataHoraFechamento", nullable = false)
-    @NotNull(message = "Não admite valor nulo")
-    private LocalDateTime dataHoraFechamento;
+    private LocalDate dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)
     private float valorTotalComanda;
@@ -46,8 +46,8 @@ public class ComandaModel {
     private Long idMesa;
 
     @NotNull(message = "O campo não pode ser nulo.")
-    @Column(name = "idformaPagamento", length = 255, nullable = false)
-    private Long idformaPagamento;
+    @Column(name = "idFormaPagamento", length = 255, nullable = false)
+    private Long idFormaPagamento;
 
     @NotNull(message = "O campo não pode ser nulo.")
     @Column(name = "idGarcom", length = 255, nullable = false)
