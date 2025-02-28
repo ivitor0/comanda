@@ -69,4 +69,4 @@ As seguintes tabelas são utilizadas no banco de dados H2:
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/ivitor0/comadas.git
+   git clone https://github.com/ivitor0/comanda.git
