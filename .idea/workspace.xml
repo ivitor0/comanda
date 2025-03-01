@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c29ab1ef-6add-452d-865f-47c2046eb322" name="Changes" comment="Launch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ComandaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ComandaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ConsumoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/model/ConsumoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ComandaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ComandaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/FormaPagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/FormaPagamentoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/GarcomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/GarcomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/controller/ProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ComandaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/repository/ComandaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/dto/ComandaTempoMedioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/rest/dto/ComandaTempoMedioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ComandaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/boteco/comanda/service/ComandaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740828338964</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Launch">
+      <option name="closed" value="true" />
+      <created>1740838315778</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740838315778</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ComandaTempoMedioDTO {
-    @Column(name = "idComanda")
-    private Long comanda;
 
     @Column(name = "tempoMedio")
     private float tempoMedio;

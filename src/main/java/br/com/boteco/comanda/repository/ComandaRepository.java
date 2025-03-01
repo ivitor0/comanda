@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,11 +40,9 @@ public interface ComandaRepository extends JpaRepository<ComandaModel, Long> {
 
     @Query(value =
             """
-            SELECT id_comanda, AVG(DATEDIFF('MINUTE', data_hora_abertura, data_hora_fechamento)) AS tempoMedio
+            SELECT AVG(DATEDIFF('MINUTE', data_hora_abertura, data_hora_fechamento)) AS tempoMedio
             FROM comanda
             WHERE status = 'Fechado' AND data_hora_fechamento BETWEEN :inicio AND :fim
-            GROUP BY id_comanda
-            ORDER BY tempoMedio DESC
             """, nativeQuery = true)
     List<Object[]> findTempoMedioPermanencia(
             @Param("inicio") LocalDateTime inicio,

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -136,8 +135,7 @@ public class ComandaService {
 
             return resultados.stream().map(obj ->
                     new ComandaTempoMedioDTO(
-                            ((Number) obj[0]).longValue(),
-                            ((Number) obj[1]).floatValue()
+                            ((Number) obj[0]).floatValue()
                     )
             ).collect(Collectors.toList());
 
@@ -153,12 +151,6 @@ public class ComandaService {
             throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
     }
-
-
-
-
-
-
 
 
 }
