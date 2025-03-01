@@ -6,12 +6,10 @@ import br.com.boteco.comanda.rest.dto.GarcomFaturamentoDTO;
 import br.com.boteco.comanda.service.GarcomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,13 +44,26 @@ public class GarcomController {
         garcomService.deletar(garcomModel);
     }
 
+//    @GetMapping("/maior-faturamento")
+//    public ResponseEntity<List<GarcomFaturamentoDTO>> calcularGarcomComMaiorFaturamento(
+//            @Valid
+//            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
+//            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
+//        List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(inicio, fim);
+//        return ResponseEntity.ok(resultado);
+//    }
+
     @GetMapping("/maior-faturamento")
     public ResponseEntity<List<GarcomFaturamentoDTO>> calcularGarcomComMaiorFaturamento(
             @Valid
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
-        List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(inicio, fim);
+            @RequestParam String inicio,
+            @RequestParam String fim) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dataInicio = LocalDateTime.parse(inicio, formatter);
+        LocalDateTime dataFim = LocalDateTime.parse(fim, formatter);
+
+        List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(dataInicio, dataFim);
         return ResponseEntity.ok(resultado);
     }
-
 }

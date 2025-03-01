@@ -10,8 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -29,9 +27,11 @@ public class ComandaModel {
 
     @Column(name = "dataHoraAbertura", nullable = false)
     @NotNull(message = "Não admite valor nulo")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHoraAbertura;
 
     @Column(name = "dataHoraFechamento", nullable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)

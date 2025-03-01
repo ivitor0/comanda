@@ -1,6 +1,7 @@
 package br.com.boteco.comanda.model;
 
 import br.com.boteco.comanda.rest.dto.ConsumoDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -29,6 +29,7 @@ public class ConsumoModel {
 
     @Column(name = "dataHoraConsumo", nullable = false)
     @NotNull(message = "Não admite valor nulo")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHoraConsumo;
 
     @Column(name = "precoUnitarioVendido", nullable = false)

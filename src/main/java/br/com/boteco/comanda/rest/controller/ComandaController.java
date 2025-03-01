@@ -8,12 +8,11 @@ import br.com.boteco.comanda.rest.dto.TotalComandasDTO;
 import br.com.boteco.comanda.service.ComandaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -50,28 +49,43 @@ public class ComandaController {
     @GetMapping("/faturamento-total")
     public ResponseEntity<List<TotalComandasDTO>> calcularFaturamentoTotalNo(
             @Valid
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
-        List<TotalComandasDTO> resultado = comandaService.getFaturamentoTotalNoPeriodo(inicio, fim);
+            @RequestParam String inicio,
+            @RequestParam String fim) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dataInicio = LocalDateTime.parse(inicio, formatter);
+        LocalDateTime dataFim = LocalDateTime.parse(fim, formatter);
+
+        List<TotalComandasDTO> resultado = comandaService.getFaturamentoTotalNoPeriodo(dataInicio, dataFim);
         return ResponseEntity.ok(resultado);
     }
 
     @GetMapping("/maior-consumo")
     public ResponseEntity<List<ComandaMaiorConsumoDTO>> calcularMaiorConsumo(
             @Valid
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim,
-            @RequestParam String status) {
-        List<ComandaMaiorConsumoDTO> resultado = comandaService.getMaiorConsumo(inicio, fim, status);
+            @RequestParam String inicio,
+            @RequestParam String fim,
+            @RequestParam String status){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dataInicio = LocalDateTime.parse(inicio, formatter);
+        LocalDateTime dataFim = LocalDateTime.parse(fim, formatter);
+
+        List<ComandaMaiorConsumoDTO> resultado = comandaService.getMaiorConsumo(dataInicio, dataFim, status);
         return ResponseEntity.ok(resultado);
     }
 
     @GetMapping("/tempo-medio")
     public ResponseEntity<List<ComandaTempoMedioDTO>> calcularTempoMedio(
             @Valid
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
-            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
-        List<ComandaTempoMedioDTO> resultado = comandaService.getTempoMedio(inicio, fim);
+            @RequestParam String inicio,
+            @RequestParam String fim) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dataInicio = LocalDateTime.parse(inicio, formatter);
+        LocalDateTime dataFim = LocalDateTime.parse(fim, formatter);
+
+        List<ComandaTempoMedioDTO> resultado = comandaService.getTempoMedio(dataInicio, dataFim);
         return ResponseEntity.ok(resultado);
     }
 
