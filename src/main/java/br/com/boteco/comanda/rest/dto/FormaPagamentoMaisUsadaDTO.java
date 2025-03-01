@@ -13,7 +13,6 @@ public class FormaPagamentoMaisUsadaDTO {
 
     @Column
     @NotNull(message = "Não admite valor nulo")
-
     private String nome;
 
     @Column(name = "quantidade")

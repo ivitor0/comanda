@@ -25,7 +25,7 @@ public interface FormaPagamentoRepository extends JpaRepository<FormaPagamentoMo
             ORDER BY quantidade DESC
             """, nativeQuery = true)
     List<Object[]> findFormaMaisUsada(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 
 }

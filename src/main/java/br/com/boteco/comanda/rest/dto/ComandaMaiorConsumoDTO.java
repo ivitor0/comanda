@@ -14,7 +14,7 @@ public class ComandaMaiorConsumoDTO {
     @Column(name = "idComanda")
     private Long comanda;
 
-    @Column(name = "valorTotalComanda", nullable = false)
+    @Column(name = "valorTotalComanda")
     private float valorTotalComanda;
 
 }

@@ -29,7 +29,7 @@ public class ConsumoModel {
 
     @Column(name = "dataHoraConsumo", nullable = false)
     @NotNull(message = "Não admite valor nulo")
-    private LocalDate dataHoraConsumo;
+    private LocalDateTime dataHoraConsumo;
 
     @Column(name = "precoUnitarioVendido", nullable = false)
     private float precoUnitarioVendido;

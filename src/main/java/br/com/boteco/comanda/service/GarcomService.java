@@ -99,7 +99,7 @@ public class GarcomService {
     }
 
     @Transactional(readOnly = true)
-    public List<GarcomFaturamentoDTO> getGarcomComMaiorFaturamento(LocalDate dataInicio, LocalDate dataFim) {
+    public List<GarcomFaturamentoDTO> getGarcomComMaiorFaturamento(LocalDateTime dataInicio, LocalDateTime dataFim) {
 
         try {
 
@@ -113,15 +113,15 @@ public class GarcomService {
             ).collect(Collectors.toList());
 
         }catch (DataIntegrityException e) {
-            throw new DataIntegrityException("Erro! Não foi possível atualizar o garçom: ");
+            throw new DataIntegrityException("Erro! Não foi possível obter o resultado");
         }catch (ConstraintException e){
-            throw new ConstraintException("Erro! Não foi possível atualizar o garçom "+ ". Violação de integridade de dados" );
+            throw new ConstraintException("Erro! Não foi possível obter o resultado "+ ". Violação de integridade de dados" );
         }catch (BusinessRuleException e){
-            throw new BusinessRuleException("Erro! Não foi possível atualizar o garçom "+ ". Violação de regra de negócios" );
+            throw new BusinessRuleException("Erro! Não foi possível obter o resultado "+ ". Violação de regra de negócios" );
         }catch (SQLException e){
-            throw new SQLException("Erro! Não foi possível atualizar o garçom "+ " . Falha na conexão com o banco de dados" );
+            throw new SQLException("Erro! Não foi possível obter o resultado "+ " . Falha na conexão com o banco de dados" );
         }catch (ObjectNotFoundException e){
-            throw new ObjectNotFoundException("Erro! Não foi possível atualizar o garçom "+ " . Garçom não encontrado");
+            throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
 
 

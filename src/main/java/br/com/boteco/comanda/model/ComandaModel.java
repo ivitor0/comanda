@@ -2,6 +2,7 @@ package br.com.boteco.comanda.model;
 
 
 import br.com.boteco.comanda.rest.dto.ComandaDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -27,10 +29,10 @@ public class ComandaModel {
 
     @Column(name = "dataHoraAbertura", nullable = false)
     @NotNull(message = "Não admite valor nulo")
-    private LocalDate dataHoraAbertura;
+    private LocalDateTime dataHoraAbertura;
 
     @Column(name = "dataHoraFechamento", nullable = false)
-    private LocalDate dataHoraFechamento;
+    private LocalDateTime dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)
     private float valorTotalComanda;

@@ -24,7 +24,7 @@ public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long> {
             ORDER BY quantidadeTotal DESC
             """, nativeQuery = true)
     List<Object[]> findProdutoMaisVendido(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 
 }

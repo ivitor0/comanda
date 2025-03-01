@@ -1,19 +1,24 @@
 package br.com.boteco.comanda.rest.dto;
 
 import br.com.boteco.comanda.model.ComandaModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 public class ComandaDTO {
     @Column(name = "dataHoraAbertura", nullable = false)
-    private LocalDate dataHoraAbertura;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraAbertura;
 
     @Column(name = "dataHoraFechamento")
-    private LocalDate dataHoraFechamento;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraFechamento;
 
     @Column(name = "valorTotalComanda", nullable = false)
     private float valorTotalComanda;

@@ -14,10 +14,10 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 public class GarcomFaturamentoDTO {
 
-    @Column(name = "nome", length = 255, nullable = false)
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "totalFaturado", length = 10, nullable = false)
+    @Column(name = "totalFaturado")
     private Float totalFaturado;
 
 }

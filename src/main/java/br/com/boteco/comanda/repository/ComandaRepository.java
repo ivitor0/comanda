@@ -15,18 +15,6 @@ public interface ComandaRepository extends JpaRepository<ComandaModel, Long> {
 
     boolean existsById(Long id);
 
-
-//    @Query("SELECT new map(c.formaPagamento as formaPagamento, COUNT(c.formaPagamento) as quantidade) " +
-//            "FROM ComandaModel c " +
-//            "WHERE c.status = 'Fechado' " +
-//            "AND c.dataHoraFechamento BETWEEN :dataInicio AND :dataFim " +
-//            "GROUP BY c.formaPagamento " +
-//            "ORDER BY COUNT(c.formaPagamento) DESC")
-//    List<Map<String, Object>> findFormaPagamentoMaisUtilizadaNoPeriodo(
-//            @Param("dataInicio") LocalDate dataInicio,
-//            @Param("dataFim") LocalDate dataFim);
-
-
     @Query(value = """
     SELECT SUM(valor_total_comanda) as totalFaturamento
     FROM comanda
@@ -34,8 +22,8 @@ public interface ComandaRepository extends JpaRepository<ComandaModel, Long> {
     data_hora_fechamento BETWEEN :inicio AND :fim
     """, nativeQuery = true)
     List<Object[]> findTotalComandas(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 
     @Query(value =
             """
@@ -47,19 +35,19 @@ public interface ComandaRepository extends JpaRepository<ComandaModel, Long> {
             ORDER BY valorTotalConsumo DESC
             """, nativeQuery = true)
     List<Object[]> findComandaMaiorConsumo(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim,
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim,
             @Param("status") String status);
 
     @Query(value =
             """
-            SELECT id_comanda, AVG(DATEDIFF('DAY', data_hora_abertura, data_hora_fechamento)) AS tempoMedio
+            SELECT id_comanda, AVG(DATEDIFF('MINUTE', data_hora_abertura, data_hora_fechamento)) AS tempoMedio
             FROM comanda
             WHERE status = 'Fechado' AND data_hora_fechamento BETWEEN :inicio AND :fim
             GROUP BY id_comanda
             ORDER BY tempoMedio DESC
             """, nativeQuery = true)
     List<Object[]> findTempoMedioPermanencia(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 }

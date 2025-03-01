@@ -6,6 +6,7 @@ import br.com.boteco.comanda.rest.dto.ProdutoMaisVendidoDTO;
 import br.com.boteco.comanda.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +46,9 @@ public class ProdutoController {
 
     @GetMapping("/mais-vendido")
     public ResponseEntity<List<ProdutoMaisVendidoDTO>> calcularMaisVendido(
-            @RequestParam LocalDate inicio,
-            @RequestParam LocalDate fim) {
+            //@Valid
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
         List<ProdutoMaisVendidoDTO> resultado = produtoService.identificarProdutoMaisVendido(inicio, fim);
         return ResponseEntity.ok(resultado);
     }

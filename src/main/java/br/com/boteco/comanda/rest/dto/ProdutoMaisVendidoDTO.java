@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class ProdutoMaisVendidoDTO {
 
-    @Column(name = "nome", length = 255)
+    @Column(name = "nome")
     private String nome;
 
     @Column(name = "quantidade")

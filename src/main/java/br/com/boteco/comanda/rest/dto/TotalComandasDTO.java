@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TotalComandasDTO {
 
-    @Column(name = "totalComandas", length = 10, nullable = false)
+    @Column(name = "totalComandas")
     private Float totalComandas;
 
 }

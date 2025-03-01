@@ -82,7 +82,7 @@ public class ComandaService {
     }
 
 
-    public List<TotalComandasDTO> getFaturamentoTotalNoPeriodo(LocalDate dataInicio, LocalDate dataFim) {
+    public List<TotalComandasDTO> getFaturamentoTotalNoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim) {
         try {
 
             List<Object[]> resultados = comandaRepository.findTotalComandas(dataInicio, dataFim);
@@ -105,7 +105,7 @@ public class ComandaService {
             throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
     }
-    public List<ComandaMaiorConsumoDTO> getMaiorConsumo(LocalDate dataInicio, LocalDate dataFim, String status) {
+    public List<ComandaMaiorConsumoDTO> getMaiorConsumo(LocalDateTime dataInicio, LocalDateTime dataFim, String status) {
         try {
 
             List<Object[]> resultados = comandaRepository.findComandaMaiorConsumo(dataInicio, dataFim, status);
@@ -129,7 +129,7 @@ public class ComandaService {
             throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
     }
-    public List<ComandaTempoMedioDTO> getTempoMedio(LocalDate dataInicio, LocalDate dataFim) {
+    public List<ComandaTempoMedioDTO> getTempoMedio(LocalDateTime dataInicio, LocalDateTime dataFim) {
         try {
 
             List<Object[]> resultados = comandaRepository.findTempoMedioPermanencia(dataInicio, dataFim);

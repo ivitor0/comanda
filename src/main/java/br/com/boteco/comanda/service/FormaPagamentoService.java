@@ -89,7 +89,7 @@ public class FormaPagamentoService {
     }
 
     @Transactional(readOnly = true)
-    public List<FormaPagamentoMaisUsadaDTO>  getFormaMaisUsada(LocalDate dataInicio, LocalDate dataFim) {
+    public List<FormaPagamentoMaisUsadaDTO>  getFormaMaisUsada(LocalDateTime dataInicio, LocalDateTime dataFim) {
 
         try {
             List<Object[]> resultados = formaPagamentoRepository.findFormaMaisUsada(dataInicio, dataFim);
@@ -105,16 +105,16 @@ public class FormaPagamentoService {
                             )
                     ).collect(Collectors.toList());
 
-        } catch (DataIntegrityException e) {
-            throw new DataIntegrityException("Erro! Não foi possível atualizar o garçom: ");
-        } catch (ConstraintException e) {
-            throw new ConstraintException("Erro! Não foi possível atualizar o garçom " + ". Violação de integridade de dados");
-        } catch (BusinessRuleException e) {
-            throw new BusinessRuleException("Erro! Não foi possível atualizar o garçom " + ". Violação de regra de negócios");
-        } catch (SQLException e) {
-            throw new SQLException("Erro! Não foi possível atualizar o garçom " + " . Falha na conexão com o banco de dados");
-        } catch (ObjectNotFoundException e) {
-            throw new ObjectNotFoundException("Erro! Não foi possível atualizar o garçom " + " . Garçom não encontrado");
+        }catch (DataIntegrityException e) {
+            throw new DataIntegrityException("Erro! Não foi possível obter o resultado");
+        }catch (ConstraintException e){
+            throw new ConstraintException("Erro! Não foi possível obter o resultado "+ ". Violação de integridade de dados" );
+        }catch (BusinessRuleException e){
+            throw new BusinessRuleException("Erro! Não foi possível obter o resultado "+ ". Violação de regra de negócios" );
+        }catch (SQLException e){
+            throw new SQLException("Erro! Não foi possível obter o resultado "+ " . Falha na conexão com o banco de dados" );
+        }catch (ObjectNotFoundException e){
+            throw new ObjectNotFoundException("Erro! Não foi possível obter o resultado "+ " . Resultado não encontrado");
         }
 
     }

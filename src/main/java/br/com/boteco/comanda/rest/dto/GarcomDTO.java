@@ -7,6 +7,7 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class GarcomDTO {
@@ -16,7 +17,7 @@ public class GarcomDTO {
 
 
     @Column(name = "dataNascimento", nullable = false)
-    private LocalDate dataNascimento;
+    private LocalDateTime dataNascimento;
 
 
     @Column(name = "cpf", length = 11, nullable = false, unique = true)

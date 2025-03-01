@@ -7,6 +7,7 @@ import br.com.boteco.comanda.rest.dto.FormaPagamentoMaisUsadaDTO;
 import br.com.boteco.comanda.service.FormaPagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,8 +47,9 @@ public class FormaPagamentoController {
 
     @GetMapping("/mais-usada")
     public ResponseEntity<List<FormaPagamentoMaisUsadaDTO>> calcularFormaMaisUsada(
-            @RequestParam LocalDate inicio,
-            @RequestParam LocalDate fim) {
+            @Valid
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
         List<FormaPagamentoMaisUsadaDTO> resultado = formaPagamentoService.getFormaMaisUsada(inicio, fim);
         return ResponseEntity.ok(resultado);
     }

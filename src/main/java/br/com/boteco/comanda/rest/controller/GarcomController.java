@@ -6,12 +6,14 @@ import br.com.boteco.comanda.rest.dto.GarcomFaturamentoDTO;
 import br.com.boteco.comanda.service.GarcomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController //Identifica a classe como controller
@@ -46,9 +48,11 @@ public class GarcomController {
 
     @GetMapping("/maior-faturamento")
     public ResponseEntity<List<GarcomFaturamentoDTO>> calcularGarcomComMaiorFaturamento(
-            @RequestParam LocalDate inicio,
-            @RequestParam LocalDate fim) {
+            @Valid
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime inicio,
+            @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime fim) {
         List<GarcomFaturamentoDTO> resultado = garcomService.getGarcomComMaiorFaturamento(inicio, fim);
         return ResponseEntity.ok(resultado);
     }
+
 }

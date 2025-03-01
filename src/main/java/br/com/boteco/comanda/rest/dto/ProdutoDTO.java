@@ -24,8 +24,6 @@ public class ProdutoDTO {
     @Column(name = "status", length = 255, nullable = false)
     private String status;
 
-//    private int quantidadeTotal;
-
     public ProdutoModel toModel(){
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(this, ProdutoModel.class);

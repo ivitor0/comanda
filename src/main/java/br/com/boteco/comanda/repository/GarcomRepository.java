@@ -26,7 +26,7 @@ public interface GarcomRepository extends JpaRepository<GarcomModel, Long> {
     LIMIT 1
     """, nativeQuery = true)
     List<Object[]> findGarcomComMaiorFaturamento(
-            @Param("inicio") LocalDate inicio,
-            @Param("fim") LocalDate fim);
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 
 }

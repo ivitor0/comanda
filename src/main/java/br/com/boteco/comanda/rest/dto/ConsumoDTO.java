@@ -1,6 +1,7 @@
 package br.com.boteco.comanda.rest.dto;
 
 import br.com.boteco.comanda.model.ConsumoModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class ConsumoDTO {
@@ -16,7 +18,8 @@ public class ConsumoDTO {
     private int quantidade;
 
     @Column(name = "dataHoraConsumo", nullable = false)
-    private LocalDate dataHoraConsumo;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraConsumo;
 
     @Column(name = "precoUnitarioVendido", nullable = false)
     private float precoUnitarioVendido;
